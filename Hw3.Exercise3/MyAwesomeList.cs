@@ -1,10 +1,10 @@
 ﻿namespace Hw3.Exercise3
 {
-    public class ParimatchList<T>
+    public class MyAwesomeList<T>
     {
         public int Count { get; }
 
-        public ParimatchList(int capacity = 1)
+        public MyAwesomeList(int capacity = 1)
         {
         }
 

@@ -1,4 +1,6 @@
-﻿namespace Hw3.Exercise4;
+﻿#pragma warning disable IDE0160
+namespace Hw3.Exercise4;
+#pragma warning restore IDE0160
 
 public static class WordsFinder
 {

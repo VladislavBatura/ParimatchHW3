@@ -1,5 +1,10 @@
-﻿namespace Hw3.Exercise5;
+﻿using System.Diagnostics.CodeAnalysis;
 
+#pragma warning disable IDE0160
+namespace Hw3.Exercise5;
+#pragma warning restore IDE0160
+
+[SuppressMessage("Design", "CA1051", MessageId = "Do not declare visible instance fields")]
 public class BinaryNode
 {
     public BinaryNode? Left;

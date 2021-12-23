@@ -3,7 +3,9 @@ using System.Diagnostics.CodeAnalysis;
 using Hw3.Exercise5;
 using Xunit;
 
+#pragma warning disable IDE0160
 namespace Hw3.Tests.Exercise5;
+#pragma warning restore IDE0160
 
 [SuppressMessage("Naming", "CA1707", MessageId = "Identifiers should not contain underscores")]
 public class BinaryTreeSorterTests
