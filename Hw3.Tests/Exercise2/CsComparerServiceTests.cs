@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Hw3.Exercise2;
@@ -21,7 +21,7 @@ namespace Hw3.Tests.Exercise2
             var lastPlayer = result.Last();
 
             Assert.Equal(33, firstPlayer.Age);
-            Assert.Equal(17, lastPlayer.Age);
+            Assert.Equal(11, lastPlayer.Age);
         }
 
         [Fact]
