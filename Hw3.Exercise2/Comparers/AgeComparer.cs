@@ -6,7 +6,7 @@ namespace Hw3.Exercise2.Comparers
     {
         public int Compare(PlayerInfo? x, PlayerInfo? y)
         {
-            throw new NotImplementedException("Should be implemented by executor");
+            return x == null || y == null ? 0 : y.Age.CompareTo(x.Age) != 0 ? y.Age.CompareTo(x.Age) : 0;
         }
     }
 }

@@ -6,7 +6,11 @@ namespace Hw3.Exercise2.Comparers
     {
         public int Compare(PlayerInfo? x, PlayerInfo? y)
         {
-            throw new NotImplementedException("Should be implemented by executor");
+            return x == null || y == null
+                ? 0
+                : !string.Equals(y.LastName, x.LastName, StringComparison.OrdinalIgnoreCase)
+                ? string.Compare(y.LastName, x.LastName, StringComparison.OrdinalIgnoreCase)
+                : 0;
         }
     }
 }

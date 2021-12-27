@@ -6,6 +6,67 @@ public static class BinaryTreeSorter
 {
     public static List<int> Sort(BinaryNode? node)
     {
-        throw new NotImplementedException("Should be implemented by executor");
+        if (node is null)
+        {
+            return new List<int>();
+        }
+
+        var list = new List<int>
+        {
+            node.Value
+        };
+
+        if (node.Left != null)
+        {
+            list.Add(node.Left.Value);
+        }
+        if (node.Right != null)
+        {
+            list.Add(node.Right.Value);
+        }
+
+        list.AddRange(InnerSort(node.Left));
+        list.AddRange(InnerSort(node.Right));
+
+        return list;
+    }
+
+    public static List<int> InnerSort(BinaryNode? node)
+    {
+        if (node is null)
+        {
+            return new List<int>();
+        }
+
+        var list = new List<int>();
+
+        if (node.Left != null)
+        {
+            list.Add(node.Left.Value);
+        }
+        if (node.Right != null)
+        {
+            list.Add(node.Right.Value);
+        }
+
+        if (node.Left == null)
+        {
+            if (node.Right == null)
+            {
+                return list;
+            }
+            list.AddRange(InnerSort(node.Right));
+        }
+        else
+        {
+            list.AddRange(InnerSort(node.Left));
+            if (node.Right == null)
+            {
+                return list;
+            }
+            list.AddRange(InnerSort(node.Right));
+        }
+
+        return list;
     }
 }

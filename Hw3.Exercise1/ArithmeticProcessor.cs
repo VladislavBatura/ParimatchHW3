@@ -16,7 +16,17 @@
             if (numbers is null)
                 throw new ArgumentNullException(nameof(numbers));
 
-            throw new NotImplementedException("Should be implemented by executor");
+            numbers = numbers.Select((x, i) =>
+            {
+                if (i % 2 is 0 || i is 0)
+                {
+                    return x * 2;
+                }
+                i++;
+                return x - 10;
+            }).ToList();
+
+            return numbers.Distinct().OrderBy(x => x).ToList();
         }
     }
 }

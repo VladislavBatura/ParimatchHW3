@@ -34,17 +34,17 @@ namespace Hw3.Tests.Exercise3
             Assert.False(myAwesomeList.Contains(111));
 
             // NOTE: uncomment after implementing index & IEnumerator
-            /*
+
             for (int i = 0; i < myAwesomeList.Count; i++)
             {
                 Assert.Equal(myAwesomeList[i], myAwesomeList.GetByIndex(i));
             }
-    
+
             foreach (var element in myAwesomeList)
             {
                 Assert.True(element != 333);
             }
-            */
+
         }
     }
 }

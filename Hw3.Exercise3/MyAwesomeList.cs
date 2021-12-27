@@ -1,41 +1,182 @@
-﻿namespace Hw3.Exercise3
+﻿using System.Collections;
+using System.Globalization;
+
+namespace Hw3.Exercise3
 {
-    public class MyAwesomeList<T>
+    public class MyAwesomeList<T> : IEnumerator<T>, IEnumerable<T>
     {
-        public int Count { get; }
+        public int Count => Size;
+        private T[] _items;
+        private int _capacity;
+        public int Size { get; set; }
+        public bool IsEmpty => Size == 0;
+
+        public T Current => _items[_position];
+
+        object IEnumerator.Current => _items[_position]!;
+
+        private int _position = -1;
+        private bool _disposedValue;
 
         public MyAwesomeList(int capacity = 1)
         {
+            if (capacity < 1)
+            {
+                capacity = 1;
+            }
+            _capacity = capacity;
+            _items = new T[_capacity];
+        }
+
+        public T this[int index]
+        {
+            get
+            {
+                ThrowIfArgumentOutOfRange(index);
+                return _items[index];
+            }
+            set
+            {
+                ThrowIfArgumentNull(value);
+                _items[index] = value;
+            }
         }
 
         public T GetByIndex(int index)
         {
-            throw new NotImplementedException("Should be implemented by executor");
+            ThrowIfArgumentOutOfRange(index);
+            return _items[index];
         }
 
         public void DeleteByIndex(int index)
         {
-            throw new NotImplementedException("Should be implemented by executor");
+            ThrowIfArgumentOutOfRange(index);
+
+            for (var i = index; i < Size - 1; i++)
+            {
+                _items[i] = _items[i + 1];
+            }
+
+            _items[Size - 1] = default!;
+
+            Size--;
         }
 
         public bool DeleteAllElements()
         {
-            throw new NotImplementedException("Should be implemented by executor");
+            _items = new T[_capacity];
+            Size = 0;
+            return true;
         }
 
         public void Add(T element)
         {
-            throw new NotImplementedException("Should be implemented by executor");
+            ThrowIfArgumentNull(element);
+            if (Size == _capacity)
+            {
+                Resize();
+            }
+
+            _items[Size] = element;
+            Size++;
         }
 
         public void InsertAt(T element, int index)
         {
-            throw new NotImplementedException("Should be implemented by executor");
+            ThrowIfArgumentOutOfRange(index);
+            ThrowIfArgumentNull(element);
+
+            if (Size == _capacity)
+            {
+                Resize();
+            }
+
+            for (var i = Size; i > index; i--)
+            {
+                _items[i] = _items[i - 1];
+            }
+
+            _items[index] = element;
+            Size++;
         }
 
         public bool Contains(T value)
         {
-            throw new NotImplementedException("Should be implemented by executor");
+            for (var i = 0; i < Size; i++)
+            {
+                var currentValue = _items[i];
+                if (currentValue!.Equals(value))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private void Resize()
+        {
+            var resized = new T[_capacity * 2];
+
+            for (var i = 0; i < _capacity; i++)
+            {
+                resized[i] = _items[i];
+            }
+            _items = resized;
+            _capacity *= 2;
+        }
+
+        private void ThrowIfArgumentOutOfRange(int index)
+        {
+            if (index > Size - 1 || index < 0)
+            {
+                throw new ArgumentOutOfRangeException(index.ToString(CultureInfo.InvariantCulture));
+            }
+        }
+
+        private void ThrowIfArgumentNull(T element)
+        {
+            if (element is null)
+            {
+                throw new ArgumentNullException(nameof(element));
+            }
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return this;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this;
+        }
+
+        public bool MoveNext()
+        {
+            _position++;
+            return _position < Size;
+        }
+
+        public void Reset()
+        {
+            _position = -1;
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposedValue)
+            {
+                if (disposing)
+                {
+                }
+                _disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
         }
     }
 }

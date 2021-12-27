@@ -17,7 +17,9 @@ namespace Hw3.Exercise2
             if (comparer is null)
                 throw new ArgumentNullException(nameof(comparer));
 
-            throw new NotImplementedException("Should be implemented by executor");
+            var players = CsComparerData.Players;
+            players.Sort(comparer);
+            return players;
         }
     }
 }
