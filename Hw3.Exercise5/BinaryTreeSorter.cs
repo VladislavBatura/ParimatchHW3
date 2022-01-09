@@ -31,7 +31,8 @@ public static class BinaryTreeSorter
         return list;
     }
 
-    public static List<int> InnerSort(BinaryNode? node)
+    // Can be private and IEnumerable<int>
+    private static IEnumerable<int> InnerSort(BinaryNode? node)
     {
         if (node is null)
         {

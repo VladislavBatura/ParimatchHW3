@@ -16,6 +16,13 @@
             if (numbers is null)
                 throw new ArgumentNullException(nameof(numbers));
 
+            /*
+             The logic can be simplified to the 1 LINQ query, like:
+             return numbers
+                .Select((x, i) => i % 2 == 0 ? x * 2 : x - 10)
+                .OrderBy(x => x)
+                .Distinct();
+             */
             numbers = numbers.Select((x, i) =>
             {
                 if (i % 2 is 0 || i is 0)

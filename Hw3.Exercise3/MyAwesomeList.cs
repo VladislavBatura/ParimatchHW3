@@ -3,12 +3,16 @@ using System.Globalization;
 
 namespace Hw3.Exercise3
 {
-    public class MyAwesomeList<T> : IEnumerator<T>, IEnumerable<T>
+    // better to seal our list
+    public sealed class MyAwesomeList<T> : IEnumerator<T>, IEnumerable<T>
     {
         public int Count => Size;
         private T[] _items;
         private int _capacity;
-        public int Size { get; set; }
+        // Don't expose the Size property from the outside
+        private int Size { get; set; }
+
+        // Can be removed, since it's not used anywhere
         public bool IsEmpty => Size == 0;
 
         public T Current => _items[_position];
@@ -20,6 +24,8 @@ namespace Hw3.Exercise3
 
         public MyAwesomeList(int capacity = 1)
         {
+            // Better to throw an exception here. Like:
+            // throw new ArgumentException("Invalid capacity value");
             if (capacity < 1)
             {
                 capacity = 1;
@@ -104,6 +110,7 @@ namespace Hw3.Exercise3
         {
             for (var i = 0; i < Size; i++)
             {
+                // we can use _items[i]!.Equals((value)) instead of creating a new variable
                 var currentValue = _items[i];
                 if (currentValue!.Equals(value))
                 {
@@ -133,7 +140,8 @@ namespace Hw3.Exercise3
             }
         }
 
-        private void ThrowIfArgumentNull(T element)
+        // can be static
+        private static void ThrowIfArgumentNull(T element)
         {
             if (element is null)
             {
@@ -162,10 +170,11 @@ namespace Hw3.Exercise3
             _position = -1;
         }
 
-        protected virtual void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
             if (!_disposedValue)
             {
+                // Fow what this if?
                 if (disposing)
                 {
                 }

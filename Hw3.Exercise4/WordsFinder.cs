@@ -6,8 +6,10 @@ namespace Hw3.Exercise4;
 
 public static class WordsFinder
 {
+    // In general: a bit complicated logic, can be done without using Regex and a lot of LINQ constructions. Hint: try to solve this via .SequenceEqual
     public static List<string>? FindWords(string word, List<string> listOfWords)
     {
+        // You can check all invalid cases in one if
         if (string.IsNullOrEmpty(word))
         {
             throw new ArgumentNullException(word);

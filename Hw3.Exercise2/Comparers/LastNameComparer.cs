@@ -6,6 +6,7 @@ namespace Hw3.Exercise2.Comparers
     {
         public int Compare(PlayerInfo? x, PlayerInfo? y)
         {
+            // Better to use if else if else constructions to code readability
             return x == null || y == null
                 ? 0
                 : !string.Equals(y.LastName, x.LastName, StringComparison.OrdinalIgnoreCase)

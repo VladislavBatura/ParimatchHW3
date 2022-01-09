@@ -35,7 +35,7 @@ namespace Hw3.Tests.Exercise3
 
             // NOTE: uncomment after implementing index & IEnumerator
 
-            for (int i = 0; i < myAwesomeList.Count; i++)
+            for (var i = 0; i < myAwesomeList.Count; i++)
             {
                 Assert.Equal(myAwesomeList[i], myAwesomeList.GetByIndex(i));
             }
