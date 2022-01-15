@@ -17,6 +17,7 @@ namespace Hw3.Exercise2
         public ReturnCode Run(string[] args)
         {
             // TODO: Parse and validate the arguments and return result of the command.
+            // You can also check here if args.Length > 1 and return the error code 
             if (args is null || args.Length is 0)
             {
                 return ReturnCode.InvalidArgs;
@@ -27,10 +28,13 @@ namespace Hw3.Exercise2
             {
                 return ReturnCode.InvalidArgs;
             }
+
+            // We can remove this, because we already do the same in the next switch { }
             var arg = stringLine.FirstOrDefault(x => x.Equals("age", StringComparison.Ordinal)
                 || x.Equals("lastname", StringComparison.Ordinal)
                 || x.Equals("rank", StringComparison.Ordinal));
 
+            // We can remove this, because we already do the same in the next switch { }
             if (arg is null)
             {
                 return ReturnCode.InvalidArgs;
